@@ -40,20 +40,26 @@ Started with the org structure and worked backwards to the network design. Three
 
 ## Architecture
 
-```
-ISP
- |
-[Firewall]
- |
-[Core Router — NAT/PAT]
- |
-[Core Switch L3 — Inter-VLAN Routing]
-      /          |          \
-  [Dist-A]   [Dist-B]   [Dist-C]
-  Bldg A     Bldg B     Bldg C
-     |        / \ \      / \ \
-   F1 Acc   F1  F2 ..  F1  F4  F5
-   VLAN 10  ←VLAN 20→  V20 V30 V30
+**Campus:** 3 buildings — 1 reception (1 floor) + 2 office buildings (5 floors each)
+
+[ ISP ]
+                   |
+              [ Firewall ]
+                   |
+           [ Core Router ]
+           NAT/PAT · Edge
+                   |
+          [ Core Switch L3 ]
+       Inter-VLAN Routing · ACL
+      /            |            \
+[ Dist-A ]    [ Dist-B ]    [ Dist-C ]
+Building A    Building B    Building C
+     |         |  |  |  |    |  |  |  |  |
+   F1          F1 F2 F3 F4 F5  F1 F2 F3 F4 F5
+ VLAN 10          VLAN 20         VLAN 20/30
+
+ **Device count:** 1 core router · 1 L3 switch · 3 distribution switches · 8 access switches · 3 servers
+ 
 ```
 
 | Layer | Device | Role |
