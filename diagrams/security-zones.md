@@ -21,14 +21,8 @@ graph TD
         IT["IT Workstations\nBroadest Internal Access\nCan Reach Mgmt + Servers"]
     end
 
-    subgraph INTERNAL["INTERNAL ZONE\nUser VLANs"]
-        subgraph V10["VLAN 10 - HR"]
-            HR["Reception\nConference Room"]
-        end
-        subgraph V20["VLAN 20 - Finance-Marketing"]
-            FIN["Finance\nMarketing\nIP Phones"]
-        end
-    end
+    HR["VLAN 10 HR\nReception and Conference Room"]
+    FIN["VLAN 20 Finance and Marketing\nIP Phones and Workstations"]
 
     subgraph SERVICES["SERVICES ZONE\nServer VLAN 40"]
         DHCP["DHCP .10"]
